@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductRequest {
     private Long amount;
-    private Long quantity;
-    private String name;
+//    private Long quantity;
+//    private String name;
     private String currency;
 }
