@@ -31,6 +31,9 @@ import java.io.IOException;
 @RequestMapping("/product/v1")
 public class PaymentController {
 
+     @Value("${stripe.endpointSecret}")
+    private String stripeEndpointSecret;
+
 
     private final StripeService stripeService;
 
@@ -71,7 +74,7 @@ public class PaymentController {
             "Endpoint to listen for events from Stripe when an action takes place in our Stripe account")
     public ResponseEntity<String> handleStripeWebhook(HttpServletRequest request) throws IOException, EventDataObjectDeserializationException {
 
-        String endpointSecret = "whsec_bcd65a7e8aafeeb07436b1dff59328f317d1025703ffedfe75137567434b2cf0"; // Replace with your actual Stripe secret
+        String endpointSecret = stripeEndpointSecret; // Replace with your actual Stripe secret
         String payload = getRequestBodyAsString(request);
         String sigHeader = request.getHeader("Stripe-Signature");
         Event event;
